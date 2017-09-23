@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -7,6 +10,8 @@ class SearchBar extends Component {
     this.state = { term: ''};
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+
   }
 
   onInputChange(event) {
@@ -16,6 +21,10 @@ class SearchBar extends Component {
   // prevent form from submitting when enter hit
   onFormSubmit(event) {
     event.preventDefault();
+
+    this.props.fetchWeather(this.state.term);
+    // reset search input to empty
+    this.setState({ term: ''});
   }
 
   render() {
@@ -32,3 +41,11 @@ class SearchBar extends Component {
     )
   }
 }
+
+// make sure actions flow through to reducers
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({fetchWeather}, dispatch);
+}
+
+// null here as the container doesn't need to know about redux store state
+export default connect(null, mapDispatchToProps)(SearchBar);
