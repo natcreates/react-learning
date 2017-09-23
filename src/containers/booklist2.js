@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8e1546d65fb8c399ddc04b893d56831e581209fb
 // to connect react and redux need react-redux which is already part of boilerplate
 import { connect } from 'react-redux';
 import { selectBook } from '../actions/index';
@@ -9,7 +13,10 @@ import { bindActionCreators } from 'redux';
 // aka a 'smart component'
 // usually put these into a separate directory
 // in general we want the most parent component that cares about a piece of state to be a container
+<<<<<<< HEAD
 // to connect react and redux need react-redux which is already part of boilerplate
+=======
+>>>>>>> 8e1546d65fb8c399ddc04b893d56831e581209fb
 
 class BookList extends Component {
 
@@ -31,10 +38,14 @@ class BookList extends Component {
     }
 }
 
+<<<<<<< HEAD
 // whatever is returned from here will be set as props in BookList
 // glues Redux to this component
 // if app state changes, our container will re-render
 // and the object will be reassigned as props
+=======
+// get application state as arg
+>>>>>>> 8e1546d65fb8c399ddc04b893d56831e581209fb
 function mapStateToProps(state) {
     // whatever object is returned will show up as this.props in booklist
     return {
