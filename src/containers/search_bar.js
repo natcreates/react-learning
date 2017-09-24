@@ -43,8 +43,20 @@ class SearchBar extends Component {
 }
 
 // make sure actions flow through to reducers
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchWeather}, dispatch);
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({fetchWeather}, dispatch);
+// }
+// below is the long-winded way, showing what's happening behind the scenes
+// Redux passes your action creator with args and sends the action obj to dispatch
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchWeather: (...args) => dispatch(fetchWeather(...args))
+//   }
+// }
+// super succinct way
+// connect knows what to do when you pass it an obj
+const mapDispatchToProps = {
+  fetchWeather,
 }
 
 // null here as the container doesn't need to know about redux store state
