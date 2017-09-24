@@ -1,6 +1,6 @@
 import axios from 'axios';
 const API_KEY = 'd370e198fbc46fe6a508f2ea738bdae9';
-const ROOT_URL = `http://samples.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
+const ROOT_URL = `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
@@ -11,7 +11,7 @@ export const FETCH_WEATHER = 'FETCH_WEATHER';
 // once the promise is fulfilled the middleware dispatches
 // a new action with the same type to the reducer
 export function fetchWeather(city) {
-  const url = `${ROOT_URL}&${city},us`;
+  const url = `${ROOT_URL}&q=${city},us`;
   const req = axios.get(url);
   return {
     type: FETCH_WEATHER,
