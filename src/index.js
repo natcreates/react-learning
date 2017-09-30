@@ -6,27 +6,20 @@ import { createStore, applyMiddleware } from 'redux';
 // Route is a React component we render inside React components that tells
 // React-router which url its display corresponds to
 import { BrowserRouter, Route } from 'react-router-dom';
+import promise from 'redux-promise';
 
-import App from './components/app';
+import PostsIndex from './components/PostsIndex';
 import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
-
-class Hello extends React.Component {
-  render() { return <div>Hello</div>}
-}
-
-
-class Goodbye extends React.Component {
-  render() { return <div>Goodbye</div>}
-}
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div>
-      <Route path="/hello" component={Hello}/>
-      <Route path="/goodbye" component={Goodbye}/>
+      <Route path="/" component={PostIndex}/>
+      <Route path="/posts/:id" component={PostsShow}/>
+      <Route path="/posts/new" component={PostsNew}/>
       </div>
     </BrowserRouter>
   </Provider>
