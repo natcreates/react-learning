@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {map} from 'lodash';
 import {fetchPosts} from '../actions';
 
-class PostIndex extends Component {
+class PostsIndex extends Component {
   // make the API call as should as we load
   // called when component present in DOM
   // called automatically first time rendered
@@ -15,7 +15,7 @@ class PostIndex extends Component {
   renderPosts() {
     return map(this.props.posts, post => {
       return (
-        <li className="list-group-item"key={post.id}>
+        <li className="list-group-item" key={post.id}>
           {post.title}
         </li>
       );
@@ -25,8 +25,8 @@ class PostIndex extends Component {
   render() {
     return (
         <div>
-          <div className="text-xs-right" to="/posts/new">
-            <Link className="btn btn-primary">
+          <div className="text-xs-right">
+            <Link className="btn btn-primary" to="/posts/new">
               Add New Post
             </Link>
           </div>
