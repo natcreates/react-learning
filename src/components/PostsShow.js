@@ -5,6 +5,11 @@ import {fetchPost} from '../actions';
 
 class PostsNew extends Component {
   // get the data as soon as component rendered to DOM
+  // note that we're actually fetching the list of posts twice
+  // once on the index, once on this page
+  // this ensures user always sees updates
+  // but you could do an if statement in the lifecycle method to check
+  // if this.props.post already exists
   componentDidMount() {
     // match.params.id is a prop provided by react-router via Route
     // params is an object listing all the wildcard tokens in a url
