@@ -16,8 +16,10 @@ export function fetchPosts() {
     };
 }
 
-export function savePost() {
-  const request = axios.post(`${ROOT_URL}/posts/new`);
+export function createPost(values, callback) {
+  // call the callback once the promise returned from axios is resolved
+  const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
+    .then(() => callback());
 
     return {
         type: SAVE_POST,

@@ -1,5 +1,5 @@
 import {mapKeys} from 'lodash';
-import FETCH_POSTS from '../actions/index';
+import {FETCH_POSTS} from '../actions/index';
 
 // mapKeys can take an array of objects and return a new object
 // using whatever is specified as the key

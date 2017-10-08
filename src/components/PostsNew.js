@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {savePost} from '../actions';
 
 class PostsNew extends Component {
   // Field name describes what state this field deals with
@@ -29,7 +32,14 @@ class PostsNew extends Component {
   }
 
   onSubmit(values) {
-
+    // React-router passes in extra props into the associated component
+    // e.g. this history.push method to redirect
+    // this string needs to match another defined route
+    // we pass as a callback so that redirect happens
+    // only after ajax req is completed
+    this.props.savePost(values, () => {
+      this.props.history.push('/');
+    });
   }
   // renderTitleField passed in without () because
   // Field will call it at some point in the future
@@ -48,6 +58,7 @@ class PostsNew extends Component {
         <Field name="categories" label="Categories" component={this.renderField}/>
         <Field name="content" label="Content" component={this.renderField}/>
         <button className="btn btn-primary" type="submit">Submit</button>
+        <Link to="/" className="btn btn-danger">Cancel</Link>
       </form>
     );
   }
@@ -84,4 +95,6 @@ const validate = (values) => {
 export default reduxForm({
   validate,
   form: 'PostsNewForm'
-})(PostsNew);
+})(
+  connect(null, {savePost})(PostsNew)
+);
